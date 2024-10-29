@@ -28,7 +28,7 @@ if (isset($_FILES['geojson_files'])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gabungkan File GeoJSON</title>
+    <title>GeoMon</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
         body {
@@ -41,8 +41,8 @@ if (isset($_FILES['geojson_files'])) {
         }
 
         .container.bg-dark-mode {
-            background-color: #333;
-            color: #f4f6f9;
+            background-color: #333 !important;
+            color: #f4f6f9 !important;
         }
 
         .footer {
@@ -69,7 +69,8 @@ if (isset($_FILES['geojson_files'])) {
 </head>
 <body class="bg-light text-dark">
     <div class="container my-5 p-4 rounded shadow-sm bg-white">
-        <h1 class="mb-4 text-center">Gabungkan File GeoJSON</h1>
+        <h1 class="mb-4 text-center">GeoMon</h1>
+        <h4 class="mb-4 text-center">Gabungkan File GeoJSON</h4>
         <form action="" method="post" enctype="multipart/form-data">
             <div class="mb-3">
                 <label for="geojson_files" class="form-label">Pilih beberapa file GeoJSON:</label>
