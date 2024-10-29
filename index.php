@@ -59,7 +59,7 @@ if (isset($_FILES['geojson_files'])) {
             color: #888;
         }
 
-        /* Field untuk JSON Result */
+        /* Field untuk JSON Result dengan scroll */
         #jsonResult {
             white-space: pre-wrap;
             word-break: break-word;
@@ -67,6 +67,8 @@ if (isset($_FILES['geojson_files'])) {
             border-radius: 5px;
             background-color: #f8f9fa;
             margin-top: 20px;
+            max-height: 300px; /* Tinggi maksimum area JSON */
+            overflow-y: auto; /* Menambahkan scroll vertikal jika konten melebihi tinggi maksimum */
         }
 
         body.dark #jsonResult {
@@ -96,7 +98,7 @@ if (isset($_FILES['geojson_files'])) {
             &copy; 2024 GeoJSON Merger. All rights reserved.
         </div>
 
-        <!-- JSON Result -->
+        <!-- JSON Result with Scrollable Area -->
         <?php if ($mergedJson): ?>
             <h3 class="mt-4">Hasil JSON yang Digabungkan:</h3>
             <div id="jsonResult" class="p-3 border">
