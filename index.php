@@ -1,4 +1,6 @@
 <?php
+$mergedJson = null;
+
 // Cek apakah ada file yang diunggah
 if (isset($_FILES['geojson_files'])) {
     $files = $_FILES['geojson_files']['tmp_name'];
@@ -22,11 +24,8 @@ if (isset($_FILES['geojson_files'])) {
         "features" => $features
     ];
 
-    // Simpan hasil ke file baru atau unduh secara langsung
-    header('Content-Type: application/json');
-    header('Content-Disposition: attachment; filename="merged.geojson"');
-    echo json_encode($merged_geojson);
-    exit;
+    // Encode hasil ke JSON untuk ditampilkan di bawah card
+    $mergedJson = json_encode($merged_geojson, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
 }
 ?>
 
@@ -51,13 +50,28 @@ if (isset($_FILES['geojson_files'])) {
 
         /* Ensure container turns dark in dark mode */
         .container.bg-dark-mode {
-            background-color: #333 !important; 
-            color: #f4f6f9 !important;
+            background-color: #333;
+            color: #f4f6f9;
         }
 
         .footer {
             font-size: 0.9em;
             color: #888;
+        }
+
+        /* Field untuk JSON Result */
+        #jsonResult {
+            white-space: pre-wrap;
+            word-break: break-word;
+            padding: 10px;
+            border-radius: 5px;
+            background-color: #f8f9fa;
+            margin-top: 20px;
+        }
+
+        body.dark #jsonResult {
+            background-color: #2c2c2c;
+            color: #e1e1e1;
         }
     </style>
 </head>
@@ -81,6 +95,14 @@ if (isset($_FILES['geojson_files'])) {
         <div class="footer text-center mt-4">
             &copy; 2024 GeoJSON Merger. All rights reserved.
         </div>
+
+        <!-- JSON Result -->
+        <?php if ($mergedJson): ?>
+            <h3 class="mt-4">Hasil JSON yang Digabungkan:</h3>
+            <div id="jsonResult" class="p-3 border">
+                <pre><?php echo htmlspecialchars($mergedJson); ?></pre>
+            </div>
+        <?php endif; ?>
     </div>
 
     <!-- Bootstrap JS Bundle with Popper -->
